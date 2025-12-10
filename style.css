@@ -550,7 +550,7 @@
             transform: scale(1.05);
         }
         
-        .pack-option.kanto {
+        .pack-option.dark {
             /* background: linear-gradient(145deg, #ff0000, #cc0000); */
             background:url("image/dark.png") center / cover no-repeat;
         }
@@ -707,7 +707,7 @@
     }
     .menu{
         display: flex;
-        position: fixed;
+        /* position: fixed; */
         top:0;
         left:50%;
         width:fit-content;
@@ -715,8 +715,9 @@
         /* gap: 200px; */
         border: 2px solid black;
         border-radius: 10px;
-        transform: translateX(-50%);
+        /* transform: translateX(-50%); */
         overflow: hidden;
+        margin-bottom: 50px;
     }
     .menu-link{
         display: block;

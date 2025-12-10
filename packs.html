@@ -12,15 +12,15 @@
         <a class="menu-link" href="packs.html"><img class="meny-img menu-img2" src="image/pack page.png"n alt=""></a>
     </div>
     <div class="pack-selection" id="packSelection">
-        <div class="pack-option kanto selected" data-pack="kanto">
+        <div class="pack-option dark selected" data-pack="dark">
             <!-- <svg class="pack-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="50" cy="50" r="45" fill="#fff" stroke="#000" stroke-width="2"/>
                 <circle cx="50" cy="50" r="30" fill="#fff" stroke="#000" stroke-width="2"/>
                 <path d="M10,50 H90" stroke="#000" stroke-width="2"/>
                 <circle cx="50" cy="50" r="10" fill="#f00" stroke="#000" stroke-width="2"/>
             </svg> -->
-            <div class="pack-option-title">KANTO PACK</div>
-            <div class="pack-option-subtitle">Classic Starters</div>
+            <div class="pack-option-title"></div>
+            <div class="pack-option-subtitle"></div>
         </div>
         <div class="pack-option johto" data-pack="johto">
             <!-- <svg class="pack-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,7 @@
                 <circle cx="50" cy="50" r="10" fill="#3b4cca" stroke="#000" stroke-width="2"/>
             </svg> -->
             <div class="pack-option-title">JOHTO PACK</div>
-            <div class="pack-option-subtitle">Legendary Beasts</div>
+            <div class="pack-option-subtitle"></div>
         </div>
         <div class="pack-option hoenn" data-pack="hoenn">
             <!-- <svg class="pack-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +40,7 @@
                 <circle cx="50" cy="50" r="10" fill="#4CAF50" stroke="#000" stroke-width="2"/>
             </svg> -->
             <div class="pack-option-title">HOENN PACK</div>
-            <div class="pack-option-subtitle">Weather Trio</div>
+            <div class="pack-option-subtitle"></div>
         </div>
     </div>
 
@@ -58,6 +58,29 @@
             </div>
             <div class="pokedex-grid" id="pokedexGrid">
                 <!-- Покемоны будут добавляться сюда динамически -->
+            </div>
+        </div>
+    </div>
+
+    <div class="pack-container">
+        <div class="pack-shadow"></div>
+        <div class="booster-pack" id="boosterPack">
+            <div class="booster-pack-front">
+                <div class="pack-glare"></div>
+                <div class="card-back-pattern"></div>
+                <svg class="pokeball-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#fff" stroke="#000" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="30" fill="#fff" stroke="#000" stroke-width="2"/>
+                    <path d="M10,50 H90" stroke="#000" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="10" fill="#f00" stroke="#000" stroke-width="2"/>
+                </svg>
+                <div class="pack-title" id="packTitle">POKÉMON BOOSTER</div>
+                <div class="pack-subtitle" id="packSubtitle">Kanto Classics</div>
+                <div class="pack-contents">Contains 7 game cards</div>
+                <button class="open-me" id="openPackBtn">OPEN PACK</button>
+            </div>
+            <div class="booster-pack-back">
+                <div class="card-back-pattern"></div>
             </div>
         </div>
     </div>

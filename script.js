@@ -10,6 +10,8 @@ const closePokedex=document.getElementById("closePokedex")
 let cards=document.querySelectorAll(".booster-pack")
 let collectedPokemons=JSON.parse(localStorage.getItem("myPokemons")) || {}
 
+let currentPackType="dark"
+
 //типы карт
 const cardTypes=[
     {
@@ -59,6 +61,15 @@ const cardTypes=[
         
     
 ]
+
+const packPokemonPool={
+    dark:[
+        "darkrai","crawdaunt","chandelure","nidoking","gengar","mawile","grafaiai","umbreon","cofagrigus","falinks","kadabra","espeon",
+    ]
+}
+const packTypes={
+    dark:cardTypes
+}
 let currentPack=[]
 let revealedCards=0
 
@@ -673,6 +684,23 @@ function createTypeBadges(pokemonName){
     ).join("")
 }
 
+function selectPack(packType){
+    currentPackType=packType
+    document.querySelectorAll("pack-option").forEach(option=>{
+        option.classList.remove("selected")
+    })
+    document.querySelector(`.pack-option[data-pack="${packType}"]`).classList.add("selected")
+    updatePackDisplay()
+}
+function updatePackDisplay(){
+    const packConfig={
+        dark:{title:"dark",subTitle:"the pack of the danger and darknes",color:"image/dark.png"},
+    }
+    const config=packConfig[currentPack]
+    const packBg=document.querySelector(".booster-pack-front")
+    packBg.style.background=`${config.color}`
+}
+
 function showPokedex(){
     pokedexContainer.style.display="flex"
     renderPokedex()
@@ -696,7 +724,6 @@ function renderPokedex(){
     });
     // allPokemons.sort()
     allPokemons.forEach(pokemon=>{
-        console.log(pokemon)
         const isCollect=collectedPokemons[pokemon.name]
         const pokedexItem=document.createElement("div")
         pokedexItem.className=`pokedex-item ${isCollect ? '' : 'unseen'} ${pokemon.class}`
@@ -728,9 +755,22 @@ function renderPokedex(){
         // pokedexItem.appendChild(rarityIndicator)
         pokedexGrid.appendChild(pokedexItem)
     })
+    
 }
 pokedexIcon.addEventListener("click",showPokedex)
 closePokedex.addEventListener("click",hidePokedex)
+
+pokedexContainer.addEventListener("click",(event)=>{
+    if(event.target==pokedexContainer){
+        hidePokedex()
+    }
+})
+document.querySelectorAll(".pack-option").forEach(element => {
+    element.addEventListener("click",()=>{
+        selectPack(element.dataset.pack)
+    })
+    
+});
 function generatePack(){
     const pack=[]
     for(let i = 0 ; i < 7 ; i++){
@@ -751,7 +791,6 @@ function generatePack(){
     }
     return pack
 }
-console.log(generatePack())
 function createCardStack(pack){
     cardStack.innerHTML=""
     pack.forEach((card,index) => {
@@ -776,7 +815,6 @@ function createCardStack(pack){
 
 }
 function openPack(){
-    console.log(1)
     openPackBtn.disabled=true
     openPackBtn.textContent="раналда"
     currentPack=generatePack()
@@ -786,7 +824,6 @@ function openPack(){
         createCardStack(currentPack)
     }, 500);
 }
-console.log(openPackBtn)
 openPackBtn.addEventListener("click",openPack)
     
 function flipCard(cardElement,cardInfo){
