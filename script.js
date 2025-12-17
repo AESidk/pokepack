@@ -686,7 +686,7 @@ function createTypeBadges(pokemonName){
 
 function selectPack(packType){
     currentPackType=packType
-    document.querySelectorAll("pack-option").forEach(option=>{
+    document.querySelectorAll(".pack-option").forEach(option=>{
         option.classList.remove("selected")
     })
     document.querySelector(`.pack-option[data-pack="${packType}"]`).classList.add("selected")
@@ -694,11 +694,11 @@ function selectPack(packType){
 }
 function updatePackDisplay(){
     const packConfig={
-        dark:{title:"dark",subTitle:"the pack of the danger and darknes",color:"image/dark.png"},
+        dark:{title:"dark",subTitle:"the pack of the danger and darknes",color:"image/dark.png"},                       
     }
-    const config=packConfig[currentPack]
+    const config=packConfig[currentPackType]
     const packBg=document.querySelector(".booster-pack-front")
-    packBg.style.background=`${config.color}`
+    packBg.style.background=`url(${config.color}) center / cover no-repeat`
 }
 
 function showPokedex(){
