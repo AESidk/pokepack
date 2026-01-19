@@ -65,6 +65,14 @@ const cardTypes=[
 const packPokemonPool={
     dark:[
         "darkrai","crawdaunt","chandelure","nidoking","gengar","mawile","grafaiai","umbreon","cofagrigus","falinks","kadabra","espeon",
+    ],
+
+     fire:[
+        "charizard","entei","yveltal","","gengar","mawile","grafaiai","umbreon","cofagrigus","falinks","kadabra","espeon",
+    ],
+
+     ice:[
+        "vanillite","dewgong","frogadier","alcremie","reshiram","mawile","grafaiai","umbreon","cofagrigus","falinks","kadabra","espeon",
     ]
 }
 const packTypes={
