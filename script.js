@@ -19,7 +19,7 @@ const cardTypes=[
         class:"common-card",
         probability:0.40,
         arts:[
-            "pikachu","crawdaunt","magikarp","bulbasaur","squirtle","zubat","doduo","dewgong","froakie","pancham","pineco","granbull","bonsly","shedinja","corphish","phantump","pinsir","zeraora","cutiefly"
+            "pikachu","crawdaunt","magikarp","bulbasaur","squirtle","zubat","doduo","dewgong","froakie","pancham","pineco","granbull","bonsly","shedinja","corphish","phantump","pinsir","zeraora","cutiefly","eiscue","ninetales","charmander","lampent"
         ]
     },
     {
@@ -27,7 +27,7 @@ const cardTypes=[
         class:"uncommon-card",
         probability:0.30,
         arts:[
-            "fuecoco","kingambit","machoke","psyduck","chandelure","nidoking","golem","dodrio","frogadier","tapu-bulu","abra","sudowoodo","zigzagoon","bronzor","vanillite","tauros","onix","zangoose","garganacl","garchomp",
+            "fuecoco","kingambit","machoke","psyduck","chandelure","nidoking","golem","dodrio","frogadier","tapu-bulu","abra","sudowoodo","zigzagoon","bronzor","vanillite","tauros","onix","zangoose","garganacl","garchomp","lapras","glastrier","emboar","armarouge","arcanine","magmar","magmar"
         ]
     },
     {
@@ -35,7 +35,7 @@ const cardTypes=[
         class:"epic-card",
         probability:0.15,
         arts:[
-            "snorlax","chimecho","scizor","gengar","hypno","umbreon","espeon","pangoro","kadabra","mew","suicune","mawile","conkeldurr","cofagrigus","krookodile","trevenant","grafaiai","tinkaton"
+            "snorlax","chimecho","scizor","gengar","hypno","umbreon","espeon","pangoro","kadabra","mew","suicune","mawile","conkeldurr","cofagrigus","krookodile","trevenant","grafaiai","tinkaton","mamoswine","frosmoth","marowak","skeledirge","magmortar"
         ]
     },
     {
@@ -43,7 +43,7 @@ const cardTypes=[
         class:"legendary-card",
         probability:0.07,
         arts:[
-            "dragapult","blastoise","alakazam","raikou","entei","aggron","yveltal","buzzwole","darkrai","landorus","lugia","celesteela","zoroark"
+            "dragapult","blastoise","alakazam","raikou","entei","aggron","yveltal","buzzwole","darkrai","landorus","lugia","celesteela","zoroark","kyurem","infernape","pawmot","blaziken","cinderace"
         
         ]
     },
@@ -52,7 +52,7 @@ const cardTypes=[
         class:"mythik-card",
         probability:0.03,
         arts:[
-            "charizard","solgaleo","falinks","victreebel","gyarados","greninja","mewtwo","reshiram","rayquaza","arceus","alcremie"
+            "charizard","solgaleo","falinks","victreebel","gyarados","greninja","mewtwo","reshiram","rayquaza","arceus","alcremie","chien-pao","ho-oh","grimmsnarl","urshifu"
                   
         ]
 
@@ -64,19 +64,21 @@ const cardTypes=[
 
 const packPokemonPool={
     dark:[
-        "darkrai","crawdaunt","chandelure","nidoking","gengar","mawile","grafaiai","umbreon","cofagrigus","falinks","kadabra","espeon",
+        "darkrai","crawdaunt","chandelure","nidoking","gengar","mawile","grafaiai","umbreon","cofagrigus","falinks","kadabra","espeon","urshifu","grimmsnarl"
     ],
 
      fire:[
-        "charizard","entei","yveltal","","gengar","mawile","grafaiai","umbreon","cofagrigus","falinks","kadabra","espeon",
+        "charizard","entei","yveltal","ninetales","charmander","marowak","ho-oh","infernape","emboar","skeledirge","armarouge","armarouge","arcanine","blaziken","cinderace","magmortar","magmar","magmar","lampent"
     ],
 
      ice:[
-        "vanillite","dewgong","frogadier","alcremie","reshiram","mawile","grafaiai","umbreon","cofagrigus","falinks","kadabra","espeon",
+        "vanillite","dewgong","frogadier","alcremie","reshiram","chien-pao","kyurem","mamoswine","lapras","eiscue","frosmoth","glastrier",
     ]
 }
 const packTypes={
-    dark:cardTypes
+    dark:cardTypes,
+    fire:cardTypes,
+    ice:cardTypes
 }
 let currentPack=[]
 let revealedCards=0
@@ -672,9 +674,9 @@ function getPokedexNumber(pokemonName) {
                 'arctovish': '883', 'duraludon': '884', 'dreepy': '885', 'drakloak': '886', 'dragapult': '887',
                 'zacian': '888', 'zamazenta': '889', 'eternatus': '890', 'kubfu': '891', 'urshifu': '892',
                 'zarude': '893', 'regieleki': '894', 'regidrago': '895', 'glastrier': '896', 'spectrier': '897',
-                'calyrex': '898','fuecoco':'909','kingambit':'983','tinkaton':'959','garganacl':'934','grafaiai':'945'
-            };
-            
+                'calyrex': '898','fuecoco':'909','kingambit':'983','tinkaton':'959','garganacl':'934','grafaiai':'945','chien-pao':'1002',
+                'armarouge':'936','pawmot':'923','skeledirge':'911'
+            }            
             return pokedexNumbers[pokemonName.toLowerCase()] || '000';
         }
 
@@ -702,9 +704,12 @@ function selectPack(packType){
 }
 function updatePackDisplay(){
     const packConfig={
-        dark:{title:"dark",subTitle:"the pack of the danger and darknes",color:"image/dark.png"},                       
+        dark:{title:"dark",subTitle:"the pack of the danger and darknes",color:"image/dark.png"}, 
+        fire:{title:"fire",subTitle:"the pack of courage and power",color:"image/fire.png"}, 
+        ice:{title:"ice",subTitle:"the coolest and icecream pack",color:"image/ice.png"}, 
+
     }
-    const config=packConfig[currentPackType]
+    const config=packConfig[currentPackType] || packConfig.dark
     const packBg=document.querySelector(".booster-pack-front")
     packBg.style.background=`url(${config.color}) center / cover no-repeat`
 }
@@ -719,17 +724,18 @@ function hidePokedex(){
 function renderPokedex(){
     pokedexGrid.innerHTML=""
     const allPokemons=[]
-    Object.values(cardTypes).forEach(pack => {
-            pack.arts.forEach(pokemon => {
-                if (!allPokemons.find(p => p.name === pokemon)) {
-                    allPokemons.push({
-                        name: pokemon,
-                        rarity: pack.type,
-                        class: pack.class
-                    });
-                }
-        });
-    });
+    cardTypes.forEach(cardType=>{
+        cardType.arts.forEach(pokemonName=>{
+            if(!allPokemons.find(p=>p.name===pokemonName)){
+                allPokemons.push({
+                    name:pokemonName,
+                    rarity:cardType.type,
+                    class:cardType.class
+                })
+            }
+        })                
+            
+    })
     // allPokemons.sort()
     allPokemons.forEach(pokemon=>{
         const isCollect=collectedPokemons[pokemon.name]
@@ -781,6 +787,7 @@ document.querySelectorAll(".pack-option").forEach(element => {
 });
 function generatePack(){
     const pack=[]
+    const regeonPokemonPool=packPokemonPool[currentPackType]
     for(let i = 0 ; i < 7 ; i++){
         const random = Math.random();
         let cumulativeProbability = 0;
@@ -788,9 +795,16 @@ function generatePack(){
             for (const cardType of cardTypes) {
                 cumulativeProbability += cardType.probability;
                 if (random <= cumulativeProbability) {
-                    const randomArt = cardType.arts[Math.floor(Math.random() * cardType.arts.length)];
+                    const randomArt = regeonPokemonPool[Math.floor(Math.random() * regeonPokemonPool.length)];
+                    let correctCardType=cardType
+                    for(const type of cardTypes){
+                        if(type.arts.includes(randomArt)){
+                             correctCardType=type
+                             break
+                        }
+                    }
                     pack.push({
-                        ...cardType,
+                        ...correctCardType,
                         art: randomArt
                     });
                     break;
